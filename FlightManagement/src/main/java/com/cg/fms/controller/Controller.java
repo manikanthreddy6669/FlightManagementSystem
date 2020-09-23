@@ -43,7 +43,8 @@ public class Controller {
 				return new ResponseEntity<String>("bookingId:" + b.getBookingId(), HttpStatus.OK);
 			else
 				return new ResponseEntity<String>("booking unsuccesful", HttpStatus.OK);
-		} else
+		}
+		else
 			return new ResponseEntity<String>("Seats not available", HttpStatus.OK);
 
 	}
