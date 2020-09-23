@@ -14,34 +14,37 @@ import javax.persistence.Table;
 public class FlightSchedule {
 	@Id
 	@Column(name = "sched_id")
-	String scheduleId;
+	private String scheduleId;
 	
 	@OneToOne
 	@JoinColumn(name = "flight_no")
-	Flight flight;
+	private Flight flight;
 	
 	@OneToOne
 	@JoinColumn(name = "source", referencedColumnName = "airport_id")
-	Airport source;
+	private Airport source;
 	
 	@OneToOne
 	@JoinColumn(name = "destination", referencedColumnName = "airport_id")
-	Airport destination;
+	private Airport destination;
 	
 	double fare;
-	LocalDateTime departure;
-	LocalDateTime arrival;
+	private int availableSeats;
+	private LocalDateTime departure;
+	private LocalDateTime arrival;
 
 	public FlightSchedule() {
 	}
 
 	public FlightSchedule(String scheduleId, Flight flight, Airport source, Airport destination, double fare,
-			LocalDateTime departure, LocalDateTime arrival) {
+			int availableSeats, LocalDateTime departure, LocalDateTime arrival) {
+		super();
 		this.scheduleId = scheduleId;
 		this.flight = flight;
 		this.source = source;
 		this.destination = destination;
 		this.fare = fare;
+		this.availableSeats = availableSeats;
 		this.departure = departure;
 		this.arrival = arrival;
 	}
@@ -101,4 +104,13 @@ public class FlightSchedule {
 	public void setArrival(LocalDateTime arrival) {
 		this.arrival = arrival;
 	}
+
+	public int getAvailableSeats() {
+		return availableSeats;
+	}
+
+	public void setAvailableSeats(int availableSeats) {
+		this.availableSeats = availableSeats;
+	}
+	
 }

@@ -2,32 +2,38 @@ package com.cg.fms.dto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Flight {
 	@Id
+	@GeneratedValue
 	@Column(name = "flight_no")
-	String flightNo;
+	private int flightNo;
 	@Column(name = "carrier_name")
-	String carrierName;
+	private String carrierName;
 	@Column(name = "seat_capacity")
-	int seatCapacity;
+	private int seatCapacity;
+	@Column
+	private String flightModel;
 
 	public Flight() {
 	}
 
-	public Flight(String flightNo, String carrierName, int seatCapacity) {
+	public Flight(int flightNo, String carrierName, int seatCapacity, String flightModel) {
+		super();
 		this.flightNo = flightNo;
 		this.carrierName = carrierName;
 		this.seatCapacity = seatCapacity;
+		this.flightModel = flightModel;
 	}
 
-	public String getFlightNo() {
+	public int getFlightNo() {
 		return flightNo;
 	}
 
-	public void setFlightNo(String flightNo) {
+	public void setFlightNo(int flightNo) {
 		this.flightNo = flightNo;
 	}
 
@@ -45,6 +51,14 @@ public class Flight {
 
 	public void setSeatCapacity(int seatCapacity) {
 		this.seatCapacity = seatCapacity;
+	}
+
+	public String getFlightModel() {
+		return flightModel;
+	}
+
+	public void setFlightModel(String flightModel) {
+		this.flightModel = flightModel;
 	}
 
 }

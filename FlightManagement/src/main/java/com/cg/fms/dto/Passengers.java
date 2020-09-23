@@ -12,8 +12,8 @@ import javax.persistence.SequenceGenerator;
 public class Passengers {
 	@Id
 	@Column(name = "passenger_uid")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "retailerRaw_seq")
-	@SequenceGenerator(name = "retailerRaw_seq", sequenceName = "PASSENGER_S1", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "passengerseq")
+	@SequenceGenerator(name = "passengerseq", sequenceName = "PASSENGER_ID", allocationSize = 1)
 	private long uid;
 	@Column(name = "passenger_name")
 	private String name;

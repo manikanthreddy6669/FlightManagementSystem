@@ -34,13 +34,18 @@ public class Controller {
 
 	// Make Booking
 	@PostMapping(value = "/BookingTickets")
-	public ResponseEntity<String> addBookingDetails(@RequestBody() Booking booking){
+	public ResponseEntity<String> addBookingDetails(@RequestBody() Booking booking) {
 
-		Booking b = bookingService.makeBooking(booking);
-		if (b.getBookingId()>0)
-			return new ResponseEntity<String>("bookingId:" + b.getBookingId(), HttpStatus.OK);
-		else
-			return new ResponseEntity<String>("booking unsuccesful", HttpStatus.OK);
+		// Check whether seats are available or not
+		if (booking.getNoOfPassengers() <= booking.getFlightSchedule().getAvailableSeats()) {
+			Booking b = bookingService.makeBooking(booking);
+			if (b.getBookingId() > 0)
+				return new ResponseEntity<String>("bookingId:" + b.getBookingId(), HttpStatus.OK);
+			else
+				return new ResponseEntity<String>("booking unsuccesful", HttpStatus.OK);
+		} else
+			return new ResponseEntity<String>("Seats not available", HttpStatus.OK);
+
 	}
 
 	// Search Flights
@@ -57,9 +62,8 @@ public class Controller {
 	}
 
 	@ExceptionHandler(FlightsNotFound.class)
-	public ResponseEntity<String> usernotfound(FlightsNotFound e) {
+	public ResponseEntity<String> flightsNotFound(FlightsNotFound e) {
 		return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
 	}
-	
 
 }

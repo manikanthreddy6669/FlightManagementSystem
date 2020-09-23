@@ -20,45 +20,45 @@ import javax.persistence.Table;
 public class Booking {
 	@Id
 	@Column(name = "booking_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_seq")
-	@SequenceGenerator(name = "book_seq", sequenceName = "bookingdetails_s1", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bookingseq")
+	@SequenceGenerator(name = "bookingseq", sequenceName = "bookingdetails_seq", allocationSize = 1)
 	private long bookingId;
-	
+
 	@OneToOne
-	@JoinColumn(name = "username")
+	@JoinColumn(name = "userId")
 	private Users users;
-	
+
 	@OneToOne
 	@JoinColumn(name = "sched_id")
 	private FlightSchedule flightSchedule;
-	
+
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "booking_id")
 	private List<Passengers> passengers;
-	
+
 	@Column(name = "booking_date")
 	private LocalDate bookingDate;
-	
-	@Column(name = "travel_date")
-	private LocalDate travelDate;
+
+	private int noOfPassengers;
 
 	public Booking() {
 	}
 
-	public Booking(long bookingId, Users users, FlightSchedule flightSchedule, LocalDate bookingDate,
-			LocalDate travelDate, List<Passengers> passengers) {
+	public Booking(long bookingId, Users users, FlightSchedule flightSchedule, List<Passengers> passengers,
+			LocalDate bookingDate, int noOfPassengers) {
+		super();
 		this.bookingId = bookingId;
 		this.users = users;
 		this.flightSchedule = flightSchedule;
-		this.bookingDate = bookingDate;
-		this.travelDate = travelDate;
 		this.passengers = passengers;
+		this.bookingDate = bookingDate;
+		this.noOfPassengers = noOfPassengers;
 	}
 
 	public Booking(long bookingId) {
 		this.bookingId = bookingId;
 	}
-	
+
 	public long getBookingId() {
 		return bookingId;
 	}
@@ -91,14 +91,6 @@ public class Booking {
 		this.bookingDate = bookingDate;
 	}
 
-	public LocalDate getTravelDate() {
-		return travelDate;
-	}
-
-	public void setTravelDate(LocalDate travelDate) {
-		this.travelDate = travelDate;
-	}
-
 	public List<Passengers> getPassengers() {
 		return passengers;
 	}
@@ -106,4 +98,13 @@ public class Booking {
 	public void setPassengers(List<Passengers> passengers) {
 		this.passengers = passengers;
 	}
+
+	public int getNoOfPassengers() {
+		return noOfPassengers;
+	}
+
+	public void setNoOfPassengers(int noOfPassengers) {
+		this.noOfPassengers = noOfPassengers;
+	}
+
 }

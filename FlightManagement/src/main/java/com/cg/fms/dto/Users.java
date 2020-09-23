@@ -1,20 +1,35 @@
 package com.cg.fms.dto;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Users {
 	@Id
-	String username;
-	String password;
-	String name;
-	char gender;
-	String email;
-	long phone;
+	@GeneratedValue
+	private int userId;
+	private String username;
+	private String password;
+	private String name;
+	private String email;
+	@Column(length=10)
+	private long phone;
 
 	public Users() {
 	}
+
+	
+	public int getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
 
 	public String getUsername() {
 		return username;
@@ -40,14 +55,6 @@ public class Users {
 		this.name = name;
 	}
 
-	public char getGender() {
-		return gender;
-	}
-
-	public void setGender(char gender) {
-		this.gender = gender;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -63,14 +70,18 @@ public class Users {
 	public void setPhone(long phone) {
 		this.phone = phone;
 	}
-	
 
-	public Users(String username, String password, String name, char gender, String email, long phone) {
+
+	public Users(int userId, String username, String password, String name, String email, long phone) {
+		super();
+		this.userId = userId;
 		this.username = username;
 		this.password = password;
 		this.name = name;
-		this.gender = gender;
 		this.email = email;
 		this.phone = phone;
 	}
+	
+	
+	
 }

@@ -6,11 +6,11 @@ import javax.persistence.Id;
 public class Airport {
 	@Id
 	@Column(name = "airport_id")
-	String airportId;
+	private String airportId;
 	@Column(name = "airport_name")
-	String airportName;
+	private String airportName;
 	@Column(name = "airport_loc")
-	String area;
+	private String area;
 
 	public Airport() {
 		super();
